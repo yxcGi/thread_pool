@@ -1,3 +1,4 @@
+#include <any>
 #include <iostream>
 #include "threadpool.hpp"
 #include <future>
@@ -17,6 +18,23 @@ ullong add(ullong a, ullong b)
 
 int main()
 {
+
+
+
+
+#if 0
+    ThreadPool* pool = &ThreadPool::getInstance();
+    pool->start(5);
+    std::cout << "start()" << std::endl;
+    pool->submitTask([]() { std::this_thread::sleep_for(3600s); });
+    pool->submitTask([]() { std::this_thread::sleep_for(3600s); });
+    pool->submitTask([]() { std::this_thread::sleep_for(3600s); });
+    pool->submitTask([]() { std::this_thread::sleep_for(3600s); });
+    pool->submitTask([]() { std::this_thread::sleep_for(1s); });
+#endif
+
+
+#if 0
     ThreadPool* pool = &ThreadPool::getInstance();
     pool->start(5);
     std::cout << "start()" << std::endl;
@@ -44,7 +62,7 @@ int main()
     std::cout << "单线程耗时: "
         << std::chrono::duration_cast<std::chrono::milliseconds>(end_time2 - first_time2).count()
         << " ms" << std::endl;
-
+#endif
     getchar();
 
     return 0;
